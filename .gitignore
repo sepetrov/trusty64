@@ -1,0 +1,5 @@
+/*.box
+/*.iso
+/Vagrantfile
+/packer_cache/*
+/variables.json

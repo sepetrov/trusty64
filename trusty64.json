@@ -1,0 +1,88 @@
+{
+    "variables": {
+        "atlas_username": "{{env `ATLAS_USERNAME`}}",
+        "atlas_name": "{{env `ATLAS_NAME`}}",
+        "atlas_token": "{{env `ATLAS_TOKEN`}}"
+    },
+    "push": {
+        "name": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+        "token": "{{user `atlas_token`}}",
+        "vcs": true
+    },
+    "builders": [
+        {
+            "type": "virtualbox-iso",
+            "boot_command": [
+                "<esc><wait>",
+                "<esc><wait>",
+                "<enter><wait>",
+                "/install/vmlinuz",
+                " auto=true",
+                " priority=critical",
+                " initrd=/install/initrd.gz",
+                " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg",
+                " -- ",
+                "<enter>"
+            ],
+            "boot_wait": "10s",
+            "disk_size": 51200,
+            "guest_os_type": "Ubuntu_64",
+            "headless": true,
+            "http_directory": "http",
+            "iso_urls": [
+                "ubuntu-14.04.3-server-amd64.iso",
+                "http://releases.ubuntu.com/14.04/ubuntu-14.04.3-server-amd64.iso"
+            ],
+            "iso_checksum_type": "md5",
+            "iso_checksum": "9e5fecc94b3925bededed0fdca1bd417",
+            "ssh_username": "vagrant",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10000s",
+            "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
+            "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+            "virtualbox_version_file": ".vbox_version",
+            "vm_name": "packer-ubuntu-14.04-amd64",
+            "vboxmanage": [
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--memory",
+                    "1024"
+                ],
+                [
+                    "modifyvm",
+                    "{{.Name}}",
+                    "--cpus",
+                    "2"
+                ]
+            ]
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+            "script": "scripts/provision.sh"
+        }
+    ],
+    "post-processors": [
+        [
+            {
+                "type": "vagrant",
+                "output": "trusty64.box"
+            },
+            {
+                "type": "atlas",
+                "token": "{{user `atlas_token`}}",
+                "only": ["virtualbox-iso"],
+                "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+                "artifact_type": "trusty64.box",
+                "metadata": {
+                    "provider": "virtualbox",
+                    "version": "0.0.1"
+                }
+            }
+        ]
+    ]
+}
