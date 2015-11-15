@@ -51,7 +51,7 @@ Information about preseeding can be found in the [Ubuntu Installation Guide](htt
 
 ## License
 
-[MIT license](LICENCE.md).
+See [LICENSE](LICENSE).
 
 ## Author
 
