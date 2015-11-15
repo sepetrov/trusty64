@@ -1,11 +1,12 @@
 # Packer - Ubuntu Server 14.04.3 (Trusty Tahr) Vagrant Box
 
 
-This Packer template builds [Ubuntu Server 14.04.3 (Trusty Tahr)](https://wiki.ubuntu.com/TrustyTahr/ReleaseNotes) Vagrant box file for VirtualBox with Guest Additions 5.0.10.
+This Packer template builds [Ubuntu Server 14.04.3 (Trusty Tahr)](https://wiki.ubuntu.com/TrustyTahr/ReleaseNotes) Vagrant box file for VirtualBox with Guest Additions 5.0.10. The box can be downloaded from [https://atlas.hashicorp.com/sepetrov/boxes/trusty64](https://atlas.hashicorp.com/sepetrov/boxes/trusty64).
 
     This branch does not include the support for remote builds using Atlas.
     This is to allow local build only, which fails, because Packer does not have
     the option to exclude the *atlas* post-processor during a build.
+
 
 ## Prerequisites
 
