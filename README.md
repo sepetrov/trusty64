@@ -3,6 +3,9 @@
 
 This Packer template builds [Ubuntu Server 14.04.3 (Trusty Tahr)](https://wiki.ubuntu.com/TrustyTahr/ReleaseNotes) Vagrant box file for VirtualBox with Guest Additions 5.0.10.
 
+    Local builds fail, because Packer does not have the option to exclude the
+    post-processor "atlas" during a build. Use the branch "local" for local builds.
+
 ## Prerequisites
 
  * [Packer](http://www.packer.io/)
@@ -12,22 +15,11 @@ This Packer template builds [Ubuntu Server 14.04.3 (Trusty Tahr)](https://wiki.u
 ## Usage
 
 1. Local build.
-   
-   
-         $ packer build trusty64.json
-   
-   The above command will produce the file *trusty64.box*. You can now import the Vagrant box.
-   
-         $ vagrant box add --provider virtualbox trusty64 trusty64.box
-   
-   To create a virtul machine, you just need to create a *Vagrantfile* with box *trusty64* and use vagrant to build it for you.
-   
-         $ vagrant init trusy64
-         $ vagrant up
 
+   Use the [local](https://github.com/sepetrov/trusty64/tree/local) branch for local builds.
 
 2. Remote build ([Atlas](https://atlas.hashicorp.com/)).
-   
+
    Create a file with the Packer variables.
 
          $ cat <<EOF > variables.json
@@ -39,11 +31,11 @@ This Packer template builds [Ubuntu Server 14.04.3 (Trusty Tahr)](https://wiki.u
          EOF
 
    Push the configuration and trigger a new build.
-   
+
          $ packer push -var-file=variables.json trusy64.json
-   
+
    Create **Vagrantfile** using your {{atlas_username}}/{{atlas_name}} box, and build the virtual machine.
-   
+
          $ vagrant init {{atlas_username}}/{{atlas_name}}
          $ vagrant up
 
