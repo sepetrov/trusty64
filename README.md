@@ -25,7 +25,7 @@ This Packer template builds [Ubuntu Server 14.04.3 (Trusty Tahr)](https://wiki.u
 
    To create a virtul machine, you just need to create a *Vagrantfile* with box *trusty64* and use vagrant to build it for you.
 
-         $ vagrant init trusy64
+         $ vagrant init trusty64
          $ vagrant up
 
 
