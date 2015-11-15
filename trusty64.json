@@ -1,14 +1,4 @@
 {
-    "variables": {
-        "atlas_username": "{{env `ATLAS_USERNAME`}}",
-        "atlas_name": "{{env `ATLAS_NAME`}}",
-        "atlas_token": "{{env `ATLAS_TOKEN`}}"
-    },
-    "push": {
-        "name": "{{user `atlas_username`}}/{{user `atlas_name`}}",
-        "token": "{{user `atlas_token`}}",
-        "vcs": true
-    },
     "builders": [
         {
             "type": "virtualbox-iso",
@@ -71,17 +61,6 @@
             {
                 "type": "vagrant",
                 "output": "trusty64.box"
-            },
-            {
-                "type": "atlas",
-                "token": "{{user `atlas_token`}}",
-                "only": ["virtualbox-iso"],
-                "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
-                "artifact_type": "vagrant.box",
-                "metadata": {
-                    "provider": "virtualbox",
-                    "version": "0.0.1"
-                }
             }
         ]
     ]
