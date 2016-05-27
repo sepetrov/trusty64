@@ -1,10 +1,12 @@
-# Packer - Ubuntu Server 14.04.3 (Trusty Tahr) Vagrant Box
+# Packer - Ubuntu Server 14.04.4 (Trusty Tahr) Vagrant Box
 
 
-This Packer template builds [Ubuntu Server 14.04.3 (Trusty Tahr)](https://wiki.ubuntu.com/TrustyTahr/ReleaseNotes) Vagrant box file for VirtualBox with Guest Additions 5.0.10. The box can be downloaded from [https://atlas.hashicorp.com/sepetrov/boxes/trusty64](https://atlas.hashicorp.com/sepetrov/boxes/trusty64).
+This Packer template builds [Ubuntu Server 14.04.4 (Trusty Tahr)](https://wiki.ubuntu.com/TrustyTahr/ReleaseNotes)
+Vagrant box file for VirtualBox with Guest Additions 5.0.20. The box can be downloaded from
+[https://atlas.hashicorp.com/sepetrov/boxes/trusty64](https://atlas.hashicorp.com/sepetrov/boxes/trusty64).
 
-    Local builds fail, because Packer does not have the option to exclude the
-    post-processor "atlas" during a build. Use the branch "local" for local builds.
+> Local builds fail, because Packer does not have the option to exclude the
+> post-processor **atlas** during a build. Use the branch **local** for local builds.
 
 
 ## Prerequisites
@@ -17,7 +19,8 @@ This Packer template builds [Ubuntu Server 14.04.3 (Trusty Tahr)](https://wiki.u
 
 1. Local build.
 
-   Use the [local](https://github.com/sepetrov/trusty64/tree/local) branch for local builds.
+   Use the [local](https://github.com/sepetrov/trusty64/tree/local) branch for
+   local builds.
 
 2. Remote build ([Atlas](https://atlas.hashicorp.com/)).
 
@@ -35,7 +38,8 @@ This Packer template builds [Ubuntu Server 14.04.3 (Trusty Tahr)](https://wiki.u
 
          $ packer push -var-file=variables.json trusy64.json
 
-   Create **Vagrantfile** using your {{atlas_username}}/{{atlas_name}} box, and build the virtual machine.
+   Create `Vagrantfile` using your `{{atlas_username}}/{{atlas_name}}` box, and
+   build the virtual machine.
 
          $ vagrant init {{atlas_username}}/{{atlas_name}}
          $ vagrant up
@@ -50,7 +54,9 @@ This Packer template builds [Ubuntu Server 14.04.3 (Trusty Tahr)](https://wiki.u
 
 ### Generate preconfiguration file
 
-Information about preseeding can be found in the [Ubuntu Installation Guide](https://help.ubuntu.com/lts/installation-guide/armhf/apb.html). To generate a preseed file, you need to complete an installation manually and run the following commands.
+Information about preseeding can be found in the [Ubuntu Installation Guide](https://help.ubuntu.com/lts/installation-guide/armhf/apb.html).
+To generate a preseed file, you need to complete an installation manually and run
+the following commands.
 
     # apt-get install debconf-utils
     # debconf-get-selections --installer > /path/to/preseed.cfg
