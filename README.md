@@ -15,10 +15,11 @@ Vagrant box file.
 
 1. Local build.
 
-   Use the [local](https://github.com/sepetrov/trusty64/tree/local) branch for
+   Use the [master](https://github.com/sepetrov/trusty64/tree/master) branch for
    local builds.
 
-2. Remote build ([Atlas](https://atlas.hashicorp.com/)).
+2. Remote build using [HashiCorp](https://www.hashicorp.com/)'s
+   [Atlas](https://atlas.hashicorp.com/).
 
    Create a file with the Packer variables.
 
