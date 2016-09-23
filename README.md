@@ -29,10 +29,11 @@ Vagrant box file.
          $ vagrant up
 
 
-2. Remote build ([Atlas](https://atlas.hashicorp.com/)).
+2. Remote build using [HashiCorp](https://www.hashicorp.com/)'s
+   [Atlas](https://atlas.hashicorp.com/).
 
-   Use the [master](https://github.com/sepetrov/trusty64/tree/master) branch,
-   which has support for remove builds.
+   Use the [atlas](https://github.com/sepetrov/trusty64/tree/atlas) branch,
+   which has support for remote builds.
 
 
 ## HOWTO
